@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% load i18n %} 
+
+{% block extrastylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}assets/websites/css/registration.css" />
+{% endblock %}
+
+{% block title %}REGISTER{% endblock title %}
+
+{% block main_content %} 
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+            <form action="{% url 'register' %}" method="POST" role="form">
+                <legend class="text-center">Login</legend>
+
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="text" class="form-control" name="email">
+                </div>
+            
+                <div class="form-group">
+                    <label for="">Password</label>
+                    <input type="password" class="form-control" name="password">
+                </div>
+                
+                <p class="text-center">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}
