@@ -53,7 +53,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=255,
         unique=True,
     )
-    phone = models.CharField(max_length=50, unique=True, null=True, blank=False)
+    birth_date = models.DateField(null=True, blank=True)
+    phone = models.CharField(max_length=50, null=True, blank=True)
     gender = models.CharField(max_length=50, choices=GENDER, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
     is_staff = models.BooleanField(

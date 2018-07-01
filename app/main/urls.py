@@ -15,20 +15,29 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+import views
 from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 from django.conf.urls.static import static
+
+handler404 = 'main.views.custom_404'
+handler500 = 'main.views.custom_500'
 
 urlpatterns = [
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
+
+if settings.DEBUG:
+    urlpatterns += urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
 urlpatterns += i18n_patterns(
     url(r'^admin/', admin.site.urls),
     url(r'', include('core.urls')),
     url(r'', include('registration.urls')),
+    url(r'404', views.custom_404, name="404"),
+    url(r'500', views.custom_500, name="500"),
 )
 
 
-if settings.DEBUG:
-    urlpatterns += urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

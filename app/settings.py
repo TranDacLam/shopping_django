@@ -25,7 +25,7 @@ SECRET_KEY = '7)m67e0(vn9nvnk2m5ogycl+f(43_9)yikm9o*p&e=7^d7q2rb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'main',
     'core',
     'registration',
@@ -51,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'main.middleware.SetDefaultLocaleMiddleware',
+    # 'main.middleware.SetDefaultLocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'main.urls'
@@ -124,6 +125,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
+
+#Set key activation expires is 7 days
+KEY_ACTIVATION_EXPIRES = 7
+
 
 ############################ Static Files' Settings ###########################
 
@@ -145,10 +151,16 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+############################ SETTING ###########################
+
+from config.setting_datetime import *
+from config.setting_mail import *
+
+
 ############################ Setting datebase, enviroment ###########################
 
 try:
-    from config.setting_local import *
+    from environment.local import *
 
 except ImportError:
     pass
