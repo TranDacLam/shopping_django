@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from core.custom_models import *
+import datetime
 
 # Create your models here.
 class DateTimeModel(models.Model):
@@ -58,7 +59,7 @@ class Product(DateTimeModel):
     description = models.TextField(_("Description"))
     hot = models.BooleanField(default=False)
     is_draft = models.BooleanField(default=False)
-    category = models.ForeignKey('Category', related_name='category_rel',
+    category = models.ForeignKey('Category', related_name='category_product_rel',
                                  on_delete=models.CASCADE)
 
     def __str__(self):
@@ -72,9 +73,9 @@ class Product(DateTimeModel):
 class Rate(DateTimeModel):
     # using name as key mapping genre 18, populate ..etc
     point = models.IntegerField(_('Point'))
-    user = models.ForeignKey('User', related_name='user_rel',
+    user = models.ForeignKey('User', related_name='user_rate_rel',
                                  on_delete=models.CASCADE)
-   	product = models.ForeignKey('Product', related_name='product_rel',
+    product = models.ForeignKey('Product', related_name='product_rate_rel',
                                  on_delete=models.CASCADE)
 
     def __str__(self):
@@ -85,20 +86,19 @@ class Rate(DateTimeModel):
 
 
 class Bill(DateTimeModel):
-	TYPE_STATUS = (
+    TYPE_STATUS = (
         ('pending', 'Pending'),
         ('accept', 'Accept'),
-        ('delivered', 'Delivered')
+        ('delivered', 'Delivered'),
         ('reject', 'Reject'),
         ('cancel', 'Cancel'),
     )
 
-    order_date = models.DateField(
-        _("Order Date"), default=datetime.date.today, editable=True)
+    order_date = models.DateField(_("Order Date"), default=datetime.date.today, editable=True)
     status = models.CharField(_("Status"), max_length=50, choices=TYPE_STATUS)
     note = models.TextField(_("Note"), null=True, blank=True)
     total = models.FloatField(_('Total'), null=True, blank=True, editable=True)
-    user = models.ForeignKey('User', related_name='user_rel',
+    user = models.ForeignKey('User', related_name='user_bill_rel',
                                  on_delete=models.CASCADE)
 
     def __str__(self):
@@ -112,9 +112,9 @@ class Bill(DateTimeModel):
 class BillDetail(DateTimeModel):
     quantity = models.FloatField(_('Total'), null=True, blank=True)
     unit_price = models.FloatField(_('Unit price'), null=True, blank=True)
-    product = models.ForeignKey('Product', related_name='product_rel',
+    product = models.ForeignKey('Product', related_name='product_bill_detail_rel',
                                  on_delete=models.CASCADE)
-    bill = models.ForeignKey('Bill', related_name='bill_rel',
+    bill = models.ForeignKey('Bill', related_name='bill_detail_rel',
                                  on_delete=models.CASCADE)
 
     def __str__(self):
@@ -128,9 +128,9 @@ class BillDetail(DateTimeModel):
 class Comment(DateTimeModel):
     content = models.TextField(_("Content"))
     parent = models.IntegerField(_('Parent'), null=True, blank=True)
-    product = models.ForeignKey('Product', related_name='product_rel',
+    product = models.ForeignKey('Product', related_name='product_comment_rel',
                                  on_delete=models.CASCADE)
-    user = models.ForeignKey('User', related_name='user_rel',
+    user = models.ForeignKey('User', related_name='user_comment_rel',
                                  on_delete=models.CASCADE)
     def __str__(self):
         return '%s' % (self.full_name)
