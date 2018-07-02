@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% load i18n %} 
+
+{% block title %}Products{% endblock title %}
+
+{% block extrastylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}assets/websites/css/about.css" />
+{% endblock %}
+
+{% block main_content %} 
+<div class="main-about">
+    <div class="header-navigate clearfix mb15">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5">
+                    <ol class="breadcrumb breadcrumb-arrow">
+                        <li><a href="/" target="_self">Home</a></li>
+                        <li><i class="fa fa-angle-right"></i></li>
+                        <li class="active"><span>About</span></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container about-custom">
+        <div class="about-title text-center">
+            <h3>GIỚI THIỆU</h3>
+        </div>
+        <div class="row about-info">
+            <div class="col-xs-12 col-sm-12">
+                <p>Kính chào quý khách,<p>
+
+                <p>Lời đầu, xin chân thành cảm ơn sự tin tưởng và ủng hộ của quý khách dành cho món bánh tuyệt hảo của tiệm bánh chúng tôi.</p>
+
+                <p>Ra đời từ năm 1948, Shop Cake kế thừa nhiều kỹ thuật và công nghệ sản xuất bánh ngọt tiên tiến của Pháp…   </p>
+
+                <img src="{{ STATIC_URL }}assets/websites/images/about.jpg" />
+
+                <p>Đến với Brodard, khách hàng sẽ được thưởng thức những hương vị đặc trưng của bánh Pháp với đa dạng chủng loại: paté chaud, croissant, muffin, bánh gateaux, tiramisu… Các loại bánh này được làm trong ngày để đảm bảo luôn tươi ngon và hợp vệ sinh.</p>
+
+                <p>Ngoài ra, ở đây còn bán các loại kem do chính Brodard sản xuất. Kem Brodard hấp dẫn ở hương vị, không làm theo dạng kem que mà được đựng trong hộp tròn, trái dừa, trái thơm hoặc những bịch nhỏ với hình dáng ngộ nghĩnh. </p>
+                <p>Đặc biệt, các loại bánh theo mùa của Brodard như bánh trung thu, bánh Giáng Sinh rất được khách hàng ưa chuộng. Chất lượng bánh Brodard được đầu tư kỹ: không dùng phụ gia, đường hóa học và đảm bảo quy định an toàn vệ sinh thực phẩm. Bên cạnh chất lượng bánh đã gắn liền với thương hiệu, Brodard chăm chút nhiều cho hình thức bánh với nhiều mẫu mã đa dạng.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

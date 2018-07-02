@@ -1,0 +1,188 @@
+<nav class="navbar" data-spy="affix" data-offset-top="231">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{{ STATIC_URL }}assets/websites/images/logofix.png" alt="">
+            </a>
+            <a href="#" title="Giỏ hàng" class="responsive-menu-cart-account">
+                <i class="fa fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" title="thông tin tài khoản" class="responsive-menu-cart-account">
+                    <i class="fa fa-user"></i>
+                </a>
+            {% else %}
+                <a href="{% url 'login' %}" title="login" class="responsive-menu-cart-account">
+                    <i class="fa fa-user"></i>
+                </a>
+            {% endif %}
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav menu-left">
+                <li class="active"><a href="{% url 'home' %}">HOME</a></li>
+                <li class="dropdown mega-dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'products' %}">PRODUCT<span class="caret"></span></a>
+                    <ul class="dropdown-menu mega-dropdown-menu">
+                        <li class="col-xs-6 col-sm-3 slide-menu-product">
+                            <ul>
+                                <li class="dropdown-header">Bánh Mới Ra Lò</li>                            
+                                <div id="menCollection" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                            <a href="#">
+                                                <img src="http://placehold.it/254x150/ff3546/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 1">
+                                            </a>
+                                            <h4><small>Dâu tây</small></h4>                                        
+                                            <button class="btn btn-primary" type="button">200.000 VND</button>
+                                            <button href="#" class="btn btn-default" type="button">
+                                                Chi tiết <i class="fa fa-long-arrow-right"></i>
+                                            </button>  
+                                        </div><!-- End Item -->
+                                        <div class="item">
+                                            <a href="#">
+                                                <img src="http://placehold.it/254x150/3498db/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 2">
+                                            </a>
+                                            <h4><small>Bánh Mexico</small></h4>                                        
+                                            <button class="btn btn-primary" type="button">200.000 VND</button> 
+                                            <button href="#" class="btn btn-default" type="button">
+                                                Chi tiết <i class="fa fa-long-arrow-right"></i>
+                                            </button>  
+                                        </div><!-- End Item -->
+                                        <div class="item">
+                                            <a href="#">
+                                                <img src="http://placehold.it/254x150/2ecc71/f5f5f5/&text=New+Collection" class="img-responsive" alt="product 3">
+                                            </a>
+                                            <h4><small>Kẹo Nougat Handmade</small></h4>                                        
+                                            <button class="btn btn-primary" type="button">200.000 VND</button> 
+                                            <button href="#" class="btn btn-default" type="button">
+                                                Chi tiết <i class="fa fa-long-arrow-right"></i>
+                                            </button>      
+                                        </div><!-- End Item -->                                
+                                    </div><!-- End Carousel Inner -->
+                                    <!-- Controls -->
+                                    <a class="left carousel-control" href="#menCollection" role="button" data-slide="prev">
+                                        <i class="fa fa-chevron-left"></i>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#menCollection" role="button" data-slide="next">
+                                        <i class="fa fa-chevron-right"></i>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div><!-- /.carousel -->
+                                <li class="divider"></li>
+                                <li><a href="{% url 'products' %}">Xem tất cả sản phẩm <i class="fa fa-chevron-right"></i></span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="col-xs-6 col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">Bánh Sinh Nhật</li>
+                                <li><a href="#">Dâu tây</a></li>
+                                <li><a href="#">Socola</a></li>
+                                <li><a href="#">Cheese Cake</a></li>
+                                <li><a href="#">Mouse đào</a></li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">Kem Tây</li>
+                                <li><a href="#">Đại ngàn</a></li>
+                                <li><a href="#">Mango db</a></li>
+                            </ul>
+                        </li>
+                        <li class=" col-xs-6 col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">Bánh Mỳ</li>
+                                <li><a href="#">Bánh Mexico</a></li>
+                                <li><a href="#">Klimt</a></li>
+                                <li><a href="#">Donuts</a></li>                            
+                                <li><a href="#">Paris Gate</a></li>                          
+                            </ul>
+                        </li>
+                        <li class="col-xs-6 col-sm-3">
+                            <ul>
+                                <li class="dropdown-header">Bánh Cookies/Kẹo</li>
+                                <li><a href="#">Kẹo Nougat Handmade</a></li>
+                                <li><a href="#">Bánh dứa Handmade</a></li>
+                                <li><a href="#">Sôcla Scale</a></li>
+                                <li><a href="#">Hạch nhân mật ong</a></li>                         
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-pc"><a href="{% url 'about' %}">ABOUT</a></li>
+                <li class="menu-pc"><a href="{% url 'contact' %}">CONTACT</a></li>
+                <li class="dropdown responsive-ipad-menu">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">KHÁC
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'about' %}">ABOUT</a></li>
+                        <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav menu-right navbar-right menu-form-search">
+                <li class="dropdown menu-search responsive-pc-menu-search">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-search"></i></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <form class="navbar-form form-seacrh-menu" role="search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Nhập từ khóa" name="q">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                        Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                <li class="responsive-mobile-menu-search">
+                    <form class="navbar-form form-seacrh-menu" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm" name="q">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                <i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                <li class="menu-account">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="thông tin tài khoản">
+                        <i class="fa fa-user"></i> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% if user.is_authenticated %}
+                            <li>
+                                <a href="{% url 'profile' %}">Profile</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="{% url 'logout' %}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'login' %}">Login</a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="{% url 'register' %}">Register</a>
+                            </li>
+                         {% endif %}
+                    </ul>
+                </li>
+                <li class="menu-cart">
+                    <a href="{% url 'cart' %}" title="Giỏ hàng">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

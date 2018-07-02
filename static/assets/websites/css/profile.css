@@ -21,6 +21,11 @@ ul li {
   margin: 20px 0;
 }
 
+.registration {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
 /* Profile sidebar */
 .profile-sidebar {
   padding: 20px 0 10px 0;

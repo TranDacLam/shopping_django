@@ -9,31 +9,36 @@
 {% block title %}LOGIN{% endblock title %}
 
 {% block main_content %} 
-    <div class="row">
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-            <form action="{% if next_page %} {% url 'login' %}?next={{next_page}} {% else %} {% url 'login' %}{% endif %}" method="post" role="form">
-                <legend class="text-center">Login</legend>
-                {% if errors %}
-                    {% for key, error in errors.items %}
-                            {{ error|escape }}
-                    {% endfor %}
-                {% endif %}
+<div class="main registration">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                <form action="{% if next_page %} {% url 'login' %}?next={{next_page}} {% else %} {% url 'login' %}{% endif %}" method="post" role="form">
+                    <legend class="text-center">Login</legend>
+                    {% if errors %}
+                        {% for key, error in errors.items %}
+                                {{ error|escape }}
+                        {% endfor %}
+                    {% endif %}
 
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="">Email</label>
-                    <input type="text" class="form-control" name="email">
-                </div>
-            
-                <div class="form-group">
-                    <label for="">Password</label>
-                    <input type="password" class="form-control" name="password">
-                </div>
-                <p class="text-center">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </p>
-                <a class="login-forgot-pass" href="{% url 'password_reset' %}">Tìm lại mật khẩu? <i class="fa fa-arrow-circle-o-right"></i></a>
-            </form>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" name="email">
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                    <p class="text-center">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </p>
+                    <a href="{% url 'password_reset' %}">Tìm lại mật khẩu? </a>
+                    <a class="pull-right" href="{% url 'register' %}">Register <i class="fa fa-arrow-circle-o-right"></i></a>
+                </form>
+            </div>
         </div>
     </div>
+</div>
 {% endblock %}

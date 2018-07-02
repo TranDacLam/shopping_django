@@ -1,0 +1,489 @@
+{% extends "layout.html" %}
+
+{% load i18n %} 
+
+{% block title %}Products{% endblock title %}
+
+{% block extrastylesheet %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}assets/libraries/css/jquery.mThumbnailScroller.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}assets/websites/css/product_detail.css" />
+{% endblock %}
+
+{% block extrascript %}
+    <script src="{{ STATIC_URL }}assets/libraries/js/jquery.elevateZoom-3.0.8.min.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}assets/libraries/js/jquery.mThumbnailScroller.min.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}assets/websites/js/product_detail.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block main_content %} 
+<div class="header-navigate clearfix mb15">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5">
+                <ol class="breadcrumb breadcrumb-arrow">
+                    <li><a href="/" target="_self">Trang chủ</a></li>
+                    <li><i class="fa fa-angle-right"></i></li>
+                    <li><a href="/collections" target="_self">Danh mục</a></li>
+                    <li><i class="fa fa-angle-right"></i></li>
+                    <li class="active"><span>Product</span></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container product-detail">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <h3 class="text-center title-detail">CHI TIẾT SẢN PHẨM</h3>
+        </div>
+        <div id="surround" class="col-lg-6 col-md-6">   
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 pd5 pd-r-none-992">
+                    <div class="product-thumb-vertical mThumbnailScroller _mTS_1 mTS-buttons-out auto-mTS-x-hover-50-none" id="sliderproduct">
+                        <div id="mTS_1" class="mTSWrapper mTS_vertical">
+                        <ul class="mTSContainer" id="mTS_1_container">
+                            <li class="product-thumb trang mTSThumbContainer">
+                                <a href="javascript:void(0);" data-image="assets/images/bonglan1.jpg" class="zoomGalleryActive">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/bonglan1.jpg" class="mTSThumb">
+                                </a>
+                            </li>
+                            <li class="product-thumb trang mTSThumbContainer">
+                                <a href="javascript:void(0);" data-image="assets/images/bonglan2.jpg">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/bonglan2.jpg" class="mTSThumb">
+                                </a>
+                            </li>
+                            <li class="product-thumb trang mTSThumbContainer">
+                                <a href="javascript:void(0);" data-image="assets/images/pro_8.jpg">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_8.jpg" class="mTSThumb">
+                                </a>
+                            </li>
+                            <li class="product-thumb trang mTSThumbContainer">
+                                <a href="javascript:void(0);" data-image="assets/images/pro_10.jpg">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_10.jpg" class="mTSThumb">
+                                </a>
+                            </li>
+                            <li class="product-thumb trang mTSThumbContainer">
+                                <a href="javascript:void(0);" data-image="assets/images/pro_9.jpg">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_9.jpg" class="mTSThumb">
+                                </a>
+                            </li>
+                            <li class="product-thumb trang mTSThumbContainer">
+                                <a href="javascript:void(0);" data-image="assets/images/pro_7.jpg">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_7.jpg" class="mTSThumb">
+                                </a>
+                            </li>
+                            <li class="product-thumb trang mTSThumbContainer">
+                                <a href="javascript:void(0);" data-image="assets/images/pro_6.jpg">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_6.jpg" class="mTSThumb">
+                                </a>
+                            </li>
+                            <li class="product-thumb trang mTSThumbContainer">
+                                <a href="javascript:void(0);" data-image="assets/images/pro_5.jpg">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_5.jpg" class="mTSThumb">
+                                </a>
+                            </li>
+                            <li class="product-thumb trang mTSThumbContainer">
+                                <a href="javascript:void(0);" data-image="assets/images/pro_4.jpg">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_4.jpg" class="mTSThumb">
+                                </a>
+                            </li>
+                        </ul>
+                        </div>                          
+                    </div>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 pd5 box-image-featured">
+                    <img class="product-image-feature" src="{{ STATIC_URL }}assets/websites/images/bonglan1.jpg" data-zoom-image="assets/images/bonglan1.jpg"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 pd5 information-product">
+            <div class="product-title">
+                <h1>Bánh Dâu Tây</h1>
+            </div>
+            <div class="clearfix product-sku-date">
+                <span class="pull-left product-sku" id="pro_sku">Mã: 836183-100-1</span>
+            </div>
+            <div class="hook-reviews">
+                <span class="rating">
+                    <i class="fas fa-star star-full"></i>
+                    <i class="fas fa-star star-full"></i>
+                    <i class="fas fa-star star-full"></i>
+                    <i class="fas fa-star star-full"></i>
+                    <i class="fas fa-star"></i>
+                </span>
+            </div>  
+            <div class="category"><h4><span>Danh Mục:</span> Bánh Phông Lan</h4></div>
+            <div class="product-price" id="price-preview"><span>4,590,000₫</span></div>     
+            <form id="add-item-form" action="/cart/add" method="post" class="variants clearfix variant-style">  
+                <div class="select-wrapper clearfix ">
+                    <label>Số lượng</label>
+                    <div class="input-group">
+                        <input type="button" value="-" class="qty-btn minusQuantity">
+                        <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
+                        <input type="button" value="+" class="qty-btn plusQuantity">
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <button class="btn-style-add add-to-cart">
+                        <span class="icon_cart_btn"></span>
+                        <span>Thêm vào giỏ</span>
+                    </button>
+                    <button class="btn-style-buynow addnow">
+                        <span class="icon_cart_btn"></span>
+                        <span>Mua ngay</span>
+                    </button>
+                </div>
+            </form>         
+            <div class="info-socials-article clearfix">
+                <div class="box-like-socials-article">
+                    <div class="fb-like fb_iframe_widget" data-href="/products/kobe-xi" data-layout="button_count" data-action="like" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=1613769142230848&amp;container_width=0&amp;href=https%3A%2F%2Frossy-store.myharavan.com%2Fproducts%2Fkobe-xi&amp;layout=button_count&amp;locale=vi_VN&amp;sdk=joey"><span style="vertical-align: bottom; width: 68px; height: 20px;"><iframe name="f1e4a32ceba5d84" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:like Facebook Social Plugin" src="https://www.facebook.com/v2.5/plugins/like.php?action=like&amp;app_id=1613769142230848&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FFdM1l_dpErI.js%3Fversion%3D42%23cb%3Df2a56416db8b67c%26domain%3Drossy-store.myharavan.com%26origin%3Dhttps%253A%252F%252Frossy-store.myharavan.com%252Ff1e5cd2981ccf5%26relation%3Dparent.parent&amp;container_width=0&amp;href=https%3A%2F%2Frossy-store.myharavan.com%2Fproducts%2Fkobe-xi&amp;layout=button_count&amp;locale=vi_VN&amp;sdk=joey" style="border: none; visibility: visible; width: 68px; height: 20px;" class=""></iframe></span></div>
+                </div> 
+                <div class="box-like-socials-article">
+                    <div class="fb-share-button fb_iframe_widget" data-href="/products/kobe-xi" data-layout="button_count" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=1613769142230848&amp;container_width=0&amp;href=https%3A%2F%2Frossy-store.myharavan.com%2Fproducts%2Fkobe-xi&amp;layout=button_count&amp;locale=vi_VN&amp;sdk=joey"><span style="vertical-align: bottom; width: 78px; height: 20px;"><iframe name="f2ade5d97b41d6c" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:share_button Facebook Social Plugin" src="https://www.facebook.com/v2.5/plugins/share_button.php?app_id=1613769142230848&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FFdM1l_dpErI.js%3Fversion%3D42%23cb%3Df351f33f2ed369%26domain%3Drossy-store.myharavan.com%26origin%3Dhttps%253A%252F%252Frossy-store.myharavan.com%252Ff1e5cd2981ccf5%26relation%3Dparent.parent&amp;container_width=0&amp;href=https%3A%2F%2Frossy-store.myharavan.com%2Fproducts%2Fkobe-xi&amp;layout=button_count&amp;locale=vi_VN&amp;sdk=joey" style="border: none; visibility: visible; width: 78px; height: 20px;" class=""></iframe></span></div>
+                </div>
+                <div class="box-like-socials-article">
+                    <div class="fb-send" data-href="/products/kobe-xi">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-xs-12 pd-none-box-service mb15">
+            <div class="box-service-product">
+                <div class="header-box-service-product text-center">
+                    <div class="title">Sẽ có tại nhà bạn</div>
+                    <div class="content">từ 1-7 ngày làm việc</div>
+                </div>
+                <div class="content-box-service-product row">
+                    <div class="col-lg-12 col-sm-3 col-xs-12">
+                        <div class="border-service-product">
+                            <div class="flexbox-grid-default">
+                                <div class="flexbox-auto-45px flexbox-align-self-center">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/icon-service-1.png">
+                                </div>
+                                <div class="flexbox-content des-service-product">
+                                    <div class="title">Giao hàng miễn phí</div>
+                                    <div class="content">Sản phẩm trên 300,000đ</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-3 col-xs-12">
+                        <div class="border-service-product">
+                            <div class="flexbox-grid-default">
+                                <div class="flexbox-auto-45px flexbox-align-self-center">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/icon-service-2.png">
+                                </div>
+                                <div class="flexbox-content des-service-product">
+                                    <div class="title">Đổi trả miễn phí</div>
+                                    <div class="content">Đổi trả miễn phí 30 ngày</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-3 col-xs-12">
+                        <div class="border-service-product">
+                            <div class="flexbox-grid-default">
+                                <div class="flexbox-auto-45px flexbox-align-self-center">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/icon-service-3.png">
+                                </div>
+                                <div class="flexbox-content des-service-product">
+                                    <div class="title">Thanh toán</div>
+                                    <div class="content">Thanh toán khi nhận hàng</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-3 col-xs-12">
+                        <div class="border-service-product">
+                            <div class="flexbox-grid-default">
+                                <div class="flexbox-auto-45px flexbox-align-self-center">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/icon-service-4.png">
+                                </div>
+                                <div class="flexbox-content des-service-product">
+                                    <div class="title">Hỗ trợ online</div>
+                                    <div class="content">093.855.9501</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row des-comment-detail">
+        <div class="col-lg-8 col-xs-12 pd5">
+            <div class="comment-tabs product-comment">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active">
+                        <a data-toggle="tab"  href="#description">
+                            <span>Mô tả sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#reviews" role="tab" data-toggle="tab">
+                            <span class="reviews text-capitalize">Đánh giá</span>
+                        </a>
+                    </li>
+                </ul>            
+                <div class="tab-content">
+                    <div class="tab-pane active"  id="description">                                      
+                        <div class="container-fluid product-description-wrapper">
+                            <p>Bánh kem sữa tươi, nhân thơm.... Size 25cm (2,5 tấc)</p>
+
+                            <p>Giá đã bao gồm phí giao trong nội thành các Thành phố. Về huyện, xã, vùng sâu... xin liên hệ báo phí vận chuyển.</p>
+
+                            <p>Bánh kem mà quý khách đã đặt sẽ được giao tới tận tay người nhận.</p>
+
+                            <p>Nội dung viết lên bánh kem (theo yêu cầu của người đặt) sẽ được viết bằng tay (thợ làm bánh) lên bánh.</p>
+
+                            <p>Ngoài ra, quý khách có thể yêu cầu nội dung ghi (in) lên thiệp (miễn phí) gửi kèm bánh.</p>
+
+                            <p>Đèn cầy (nến) số theo tuổi của người nhận sẽ gửi tặng miễn phí kèm theo bánh.</p>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="reviews">                
+                        <ul class="media-list">
+                          <li class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg" alt="profile">
+                            </a>
+                            <div class="media-body">
+                                <div class="well well-lg">
+                                    <h5 class="media-heading text-uppercase reviews">Marco </h5>
+                                    <ul class="media-date text-uppercase reviews list-inline">
+                                        <li class="dd">22</li>
+                                        <li class="mm">09</li>
+                                        <li class="aaaa">2014</li>
+                                    </ul>
+                                    <p class="review-rating">
+                                        <span class="rating">
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star"></i>
+                                        </span>
+                                    </p>
+                                    <p class="media-comment">
+                                        Great snippet! Thanks for sharing.
+                                    </p>
+                                    <button type="button" class="btn btn-info btn-circle text-uppercase reply-btn" data-toggle="modal" data-target="#Reply-customer" data-id-comment="1"><i class="fas fa-share"></i> Reply</button>
+                                    <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><i class="fas fa-comment"></i> 1 comment</a>
+                              </div>              
+                            </div>
+                            <div class="collapse reply-every-comment" id="replyOne">
+                                <ul class="media-list">
+                                    <li class="media media-replied">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/ManikRathee/128.jpg" alt="profile">
+                                        </a>
+                                        <div class="media-body">
+                                          <div class="well well-lg">
+                                                <h5 class="media-heading text-uppercase reviews"><i class="fas fa-share"></i> Phản Hồi Của Người Bán</h5>
+                                                <ul class="media-date text-uppercase reviews list-inline">
+                                                    <li class="dd">22</li>
+                                                    <li class="mm">09</li>
+                                                    <li class="aaaa">2014</li>
+                                                </ul>
+                                                <p class="media-comment">
+                                                    Thank you Guys!
+                                                </p>
+                                            </div>              
+                                        </div>
+                                    </li>
+                                </ul>  
+                            </div>
+                        </li>          
+                        <li class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/kurafire/128.jpg" alt="profile">
+                            </a>
+                            <div class="media-body">
+                              <div class="well well-lg">
+                                    <h5 class="media-heading text-uppercase reviews">Nico</h5>
+                                    <ul class="media-date text-uppercase reviews list-inline">
+                                        <li class="dd">22</li>
+                                        <li class="mm">09</li>
+                                        <li class="aaaa">2014</li>
+                                    </ul>
+                                    <p class="review-rating">
+                                        <span class="rating">
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star star-full"></i>
+                                        </span>
+                                    </p>
+                                    <p class="media-comment">
+                                        I'm looking for that. Thanks!
+                                    </p>
+                                    <button type="button" class="btn btn-info btn-circle text-uppercase reply-btn" data-toggle="modal" data-target="#Reply-customer" data-id-comment="2"><i class="fas fa-share"></i> Reply</button>
+                                </div>              
+                            </div>
+                          </li>
+                          <li class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/lady_katherine/128.jpg" alt="profile">
+                            </a>
+                            <div class="media-body">
+                              <div class="well well-lg">
+                                    <h5 class="media-heading text-uppercase reviews">Kriztine</h5>
+                                    <ul class="media-date text-uppercase reviews list-inline">
+                                        <li class="dd">22</li>
+                                        <li class="mm">09</li>
+                                        <li class="aaaa">2014</li>
+                                    </ul>
+                                    <p class="review-rating">
+                                        <span class="rating">
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </span>
+                                    </p>
+                                    <p class="media-comment">
+                                        Yehhhh... Thanks for sharing.
+                                    </p>
+                                    <button type="button" class="btn btn-info btn-circle text-uppercase reply-btn" data-toggle="modal" data-target="#Reply-customer" data-id-comment="3"><i class="fas fa-share"></i> Reply</button>
+                                    <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyTwo"><i class="fas fa-comment"></i> 1 comment</a>
+                                </div>              
+                            </div>
+                            <div class="collapse reply-every-comment" id="replyTwo">
+                                <ul class="media-list">
+                                    <li class="media media-replied">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jackiesaik/128.jpg" alt="profile">
+                                        </a>
+                                        <div class="media-body">
+                                            <div class="well well-lg">
+                                                <h5 class="media-heading text-uppercase reviews"><i class="fas fa-share"></i> Phản Hồi Của Người Bán</h5>
+                                                <ul class="media-date text-uppercase reviews list-inline">
+                                                    <li class="dd">22</li>
+                                                    <li class="mm">09</li>
+                                                    <li class="aaaa">2014</li>
+                                                </ul>
+                                                <p class="media-comment">
+                                                    Good!
+                                                </p>
+                                          </div>              
+                                        </div>
+                                    </li>
+                                </ul>  
+                            </div>
+                          </li>
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+            <div id="Reply-customer" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Trả lời đánh gía của người mua</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="POST">
+                                <div class="form-group">
+                                    <label for="">Trả lời</label>
+                                    <textarea class="form-control" placeholder="Nội dung..."></textarea>
+                                </div>
+                                <input type="hidden" class="comment-parrent" name="comment_id">
+                                <button type="submit" class="btn btn-primary">Trả lời</button>
+                            </form>
+                         </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-xs-12 pd5">
+            
+        <div id="product-related" class="mb10">
+            <div class="wrapper-product-related">
+                <div class="title-group-related">
+                    <h3 class="title-group">
+                        Sản phẩm liên quan
+                    </h3>
+                </div>
+                <ul class="list-product-related">
+                    <li>
+                        <div class="flexbox-grid-default bd-bt--detail-pro">
+                            <div class="flexbox-auto-100px">
+                                <a href="detail.html">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_12.jpg">
+                                </a>
+                            </div>
+                            <div class="flexbox-content pd-l-10">
+                                <a href="detail.html">
+                                    <h2>Nike Air Max 1 Ultra Essential</h2>
+                                    <p class="product-box-price-related clearfix flexbox-grid-default">
+                                        <span class="price-new-related flexbox-content text-left">3,390,000₫</span> 
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="flexbox-grid-default bd-bt--detail-pro">
+                            <div class="flexbox-auto-100px">
+                                <a href="detail.html">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_11.jpg">
+                                </a>
+                            </div>
+                            <div class="flexbox-content pd-l-10">
+                                <a href="detail.html">
+                                    <h2>Nike Train Speed 4</h2>
+                                    <p class="product-box-price-related clearfix flexbox-grid-default"> 
+                                        <span class="price-new-related flexbox-content text-left">3,090,000₫</span> 
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="flexbox-grid-default bd-bt--detail-pro">
+                            <div class="flexbox-auto-100px">
+                                <a href="detail.html">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_10.jpg">
+                                </a>
+                            </div>
+                            <div class="flexbox-content pd-l-10">
+                                <a href="detail.html">
+                                    <h2>Nike Free Train Versatility</h2>
+                                    <p class="product-box-price-related clearfix flexbox-grid-default">
+                                        <span class="price-new-related flexbox-content text-left">3,090,000₫</span>
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </li>   
+                    <li>
+                        <div class="flexbox-grid-default bd-bt--detail-pro">
+                            <div class="flexbox-auto-100px">
+                                <a href="detail.html">
+                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_9.jpg">
+                                </a>
+                            </div>
+                            <div class="flexbox-content pd-l-10">
+                                <a href="detail.html">
+                                    <h2>Nike Air Zoom Pegasus 33</h2>
+                                    <p class="product-box-price-related clearfix flexbox-grid-default">
+                                        <span class="price-new-related flexbox-content text-left">2,878,000₫</span>
+                                        <span class="price-old-related flexbox-content">3,600,000₫</span> 
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </li>   
+                </ul>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

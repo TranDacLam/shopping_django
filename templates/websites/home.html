@@ -4,6 +4,127 @@
 
 {% block title %}HOME{% endblock title %}
 
+{% block extrastylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}assets/websites/css/home.css" />
+{% endblock %}
+
+{% block extrascript %}
+    <script src="{{ STATIC_URL }}assets/websites/js/home.js" type="text/javascript"></script>
+{% endblock %}
+
 {% block main_content %} 
-    {{title}}
+{% if data_slide %}
+<div class="slide-show">
+    <div class="container-fluid">
+        <div id="slider_container">
+            <!-- Slides Container -->
+            <div u="slides" class="slide-img">
+                {% for item in data_slide %}
+                    <div>
+                        <a href="{{item.sub_url}}"><img data-u="image" src="{{ MEDIA_URL }}{{item.image}}" /></a>
+                    </div>
+                {% endfor %}
+            </div>   
+        
+            <!--#region Arrow Navigator Skin Begin -->
+            <!-- Help: https://www.jssor.com/development/slider-with-arrow-navigator.html -->
+            <div data-u="arrowleft" class="jssora051 arrow-slide1" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+                <svg viewBox="0 0 16000 16000">
+                    <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+                </svg>
+            </div>
+            <div data-u="arrowright" class="jssora051 arrow-slide2" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+                <svg viewBox="0 0 16000 16000">
+                    <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+                </svg>
+            </div>
+            <!--#endregion Arrow Navigator Skin End -->
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="main">
+    <div class="container">
+        <div class="cake-in-day">
+            <div class="custom-title"><span class="red"> HOT</span></div>
+            <div class="owl-carousel">
+                {% for hot in hot_products %}
+                    <div class="banner-widget">
+                        <div class="saha-banner-wrap">
+                            <div class="saha-banner-content">
+                                <div class="saha-banner-inner">
+                                    <h2 style="">
+                                        <a href="{% url 'product_detail' hot.id %}">{{hot.name}}</a>
+                                    </h2>
+                                    <p>
+                                        <a class="" href="{% url 'product_detail' hot.id %}">View Detail
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                            <img alt="" src="{{ MEDIA_URL }}{{hot.image}}">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="cate">
+            <div class="row">
+                <div class="textwidget">
+                    <h2 class="custom-title">
+                        <span class="red">NEW</span>
+                    </h2>
+                </div>
+                {% for new in new_products %}
+                    <div class="col-xs-6 col-sm-6 col-md-3">
+                        <div class="item-grid">
+                            <img class="new" src="{{ MEDIA_URL }}{{hot.image}}" alt="{{new.name}}">
+                            <div class="product_img">
+                                <a href="{% url 'product_detail' new.id %}"><img class="img-responsive" src="{{ MEDIA_URL }}{{new.image}}" alt="{{new.name}}"></a>
+                            </div>
+                            <div class="product-details">
+                                <a href="{% url 'product_detail' new.id %}" class="title">{{new.name}}</a>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="price-pro">Giá: <span>{{new.unit_price}} VNĐ</span></div>
+                            <div class="detail-pro">
+                                <a class="btn" href="{% url 'product_detail' new.id %}">
+                                    View Detail <i class="fas fa-long-arrow-alt-right"></i>
+                                </a>
+                            </div> 
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="cate">
+            <div class="row">
+                <div class="custom-title"><span class="red">PROMOTION</span></div>
+                {% for promotion in promotion_products %}
+                    <div class="col-xs-6 col-sm-6 col-md-3">
+                        <div class="item-grid">
+                            <img class="hot" src="{{ MEDIA_URL }}{{promotion.image}}" alt="{{promotion.name}}">
+                            <div class="product_img">
+                                <a href="{% url 'product_detail' promotion.id %}"><img class="img-responsive" src="{{ MEDIA_URL }}{{promotion.image}}" alt="{{promotion.name}}"></a>
+                            </div>
+                            <div class="product-details">
+                                <a href="{% url 'product_detail' promotion.id %}" class="title">{{promotion.name}}</a>
+                            </div>
+                            <div class="clear"></div>
+                            <div class="price-pro">Giá: <span>{{promotion.unit_price}} VNĐ</span></div>
+                            <div class="detail-pro">
+                                <a class="btn" href="{% url 'product_detail' promotion.id %}">
+                                    View Detail <i class="fas fa-long-arrow-alt-right"></i>
+                                </a>
+                            </div> 
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
 {% endblock %}

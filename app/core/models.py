@@ -38,21 +38,11 @@ class SlideShow(DateTimeModel):
 class Category(models.Model):
     name = models.CharField(_('Name'), max_length=100, unique=True)
     slug = models.SlugField(_('Slug'), max_length=100)
-    parent = models.ForeignKey('self',blank=True, null=True ,related_name='children')
 
     def __str__(self):
-        full_path = [self.name]                  # post.  use __unicode__ in place of
-                                                 # __str__ if you are using python 2
-        k = self.parent                          
-
-        while k is not None:
-            full_path.append(k.name)
-            k = k.parent
-
-        return ' -> '.join(full_path[::-1])
+        return '%s' % (self.name)
 
     class Meta:
-        unique_together = ('slug', 'parent',) 
         verbose_name = _('Category')
         verbose_name_plural = _('Categories')
 
