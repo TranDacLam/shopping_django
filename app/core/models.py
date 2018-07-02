@@ -36,23 +36,33 @@ class SlideShow(DateTimeModel):
 
 
 class Category(models.Model):
-    name = models.CharField(_('Name'), max_length=255, unique=True)
-    description = models.TextField(_('Description'), null=True, blank=True)
+    name = models.CharField(_('Name'), max_length=100, unique=True)
+    slug = models.SlugField(_('Slug'), max_length=100)
+    parent = models.ForeignKey('self',blank=True, null=True ,related_name='children')
 
     def __str__(self):
-        return '%s' % (self.name)
+        full_path = [self.name]                  # post.  use __unicode__ in place of
+                                                 # __str__ if you are using python 2
+        k = self.parent                          
+
+        while k is not None:
+            full_path.append(k.name)
+            k = k.parent
+
+        return ' -> '.join(full_path[::-1])
 
     class Meta:
-        verbose_name = _('Product Category')
-        verbose_name_plural = _('Product Categories')
+        unique_together = ('slug', 'parent',) 
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
 
 
 class Product(DateTimeModel):
     name = models.CharField(_("Product Name"), max_length=255)
-    alias = models.CharField(_("Alias"), max_length=255)
+    slug = models.SlugField(_("Slug"), max_length=255)
     image = models.ImageField(
         _('Product'), max_length=255, upload_to="product")
-    avg_rate = models.IntegerField(_('Avg Rate'), default=0)
+    avg_rate = models.IntegerField(_('Avg Rate'), editable=True, default=0)
     unit_price = models.FloatField(_('Unit price'), blank=False)
     promotion = models.FloatField(_('Promotion'), null=True, blank=True)
     inventory = models.IntegerField(_('Inventory'), null=True, blank=True)
