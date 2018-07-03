@@ -21,3 +21,9 @@ def currency(value):
     value = '{:,}'.format(value)
     return value
     
+
+@register.filter
+def sub_total(price, quantity):
+    total = price * quantity
+    total = '{:,}'.format(total)
+    return total

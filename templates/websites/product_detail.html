@@ -63,7 +63,7 @@
             </div>  
             <div class="category"><h4><span>Category:</span> {{product.name}}</h4></div>
             <div class="product-price" id="price-preview"><span>{{product.unit_price|currency}}₫</span></div>     
-            <form id="add-item-form" action="{% url 'cart_add' %}" method="post" class="variants clearfix variant-style">  
+            <form id="add-item-form" action="{% url 'add_to_cart' %}" method="post" class="variants clearfix variant-style">  
                 {% csrf_token %}
                 <div class="select-wrapper clearfix ">
                     <label>Quantity</label>

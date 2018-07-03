@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'^product/rating/$', views.product_rating, name='product_rating'),
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^about/$', views.about, name='about'),
-    url(r'^cart/add/$', views.cart_add, name='cart_add'),
+    url(r'^cart/$', views.cart, name='cart'),
+    url(r'^cart/add/$', views.add_to_cart, name='add_to_cart'),
+    url(r'^checkout/$', views.checkout, name='checkout'),
 ]
