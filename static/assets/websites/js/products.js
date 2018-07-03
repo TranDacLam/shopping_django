@@ -7,4 +7,9 @@ $(document).ready(function() {
             $(this).closest('.group-collection').attr('aria-expanded', 'true');
         }
     });
+
+    $('.sort-by').change(function(){
+        window.location = $(this).val()
+    });
+
 });

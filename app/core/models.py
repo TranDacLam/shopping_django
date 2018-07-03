@@ -53,7 +53,7 @@ class Product(DateTimeModel):
     image = models.ImageField(
         _('Product'), max_length=255, upload_to="product")
     avg_rate = models.IntegerField(_('Avg Rate'), editable=True, default=0)
-    unit_price = models.FloatField(_('Unit price'), blank=False)
+    unit_price = models.IntegerField(_('Unit price'), blank=False)
     promotion = models.FloatField(_('Promotion'), null=True, blank=True)
     inventory = models.IntegerField(_('Inventory'), null=True, blank=True)
     description = models.TextField(_("Description"))

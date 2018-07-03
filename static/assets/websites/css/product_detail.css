@@ -391,13 +391,13 @@ input,input:focus {
 .quickview-information .hook-reviews, .information-product .hook-reviews {
     padding: 0;
 }
-.hook-reviews .rating .fas, #reviews .rating .fas {
+.hook-reviews .rating .fa, #reviews .rating .fa {
     display: inline-block;
 }
-.hook-reviews .rating .fas::before, #reviews .rating .fas::before {
+.hook-reviews .rating .fa::before, #reviews .rating .fa::before {
     color: #d5d5d5;
 }
-.hook-reviews .rating .fas.star-full::before, #reviews .rating .fas.star-full::before {
+.hook-reviews .rating .fa.star-full::before, #reviews .rating .fa.star-full::before {
     color: #ffae00;
 }
 .product-wrapper .product-info .price-new {

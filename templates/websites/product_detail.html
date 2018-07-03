@@ -1,17 +1,17 @@
 {% extends "layout.html" %}
 
 {% load i18n %} 
+{% load modal_data_tags %}
 
 {% block title %}Products{% endblock title %}
 
 {% block extrastylesheet %}
-    <link rel="stylesheet" href="{{ STATIC_URL }}assets/libraries/css/jquery.mThumbnailScroller.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}assets/libraries/css/fontawesome-stars.css" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}assets/websites/css/product_detail.css" />
 {% endblock %}
 
 {% block extrascript %}
-    <script src="{{ STATIC_URL }}assets/libraries/js/jquery.elevateZoom-3.0.8.min.js" type="text/javascript"></script>
-    <script src="{{ STATIC_URL }}assets/libraries/js/jquery.mThumbnailScroller.min.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}assets/libraries/js/jquery.barrating.min.js" type="text/javascript"></script>
     <script src="{{ STATIC_URL }}assets/websites/js/product_detail.js" type="text/javascript"></script>
 {% endblock %}
 
@@ -21,11 +21,11 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pd5">
                 <ol class="breadcrumb breadcrumb-arrow">
-                    <li><a href="/" target="_self">Trang chủ</a></li>
+                    <li><a href="{% url 'home' %}" target="_self">Home</a></li>
                     <li><i class="fa fa-angle-right"></i></li>
-                    <li><a href="/collections" target="_self">Danh mục</a></li>
+                    <li><a href="{% url 'products' %}?category={{product.category.id}}" >{{product.category.name}}</a></li>
                     <li><i class="fa fa-angle-right"></i></li>
-                    <li class="active"><span>Product</span></li>
+                    <li class="active"><span>{{product.name}}</span></li>
                 </ol>
             </div>
         </div>
@@ -34,103 +34,55 @@
 <div class="container product-detail">
     <div class="row">
         <div class="col-xs-12 col-sm-12">
-            <h3 class="text-center title-detail">CHI TIẾT SẢN PHẨM</h3>
+            <h3 class="text-center title-detail">PRODUCT DETAIL</h3>
         </div>
         <div id="surround" class="col-lg-6 col-md-6">   
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 pd5 pd-r-none-992">
-                    <div class="product-thumb-vertical mThumbnailScroller _mTS_1 mTS-buttons-out auto-mTS-x-hover-50-none" id="sliderproduct">
-                        <div id="mTS_1" class="mTSWrapper mTS_vertical">
-                        <ul class="mTSContainer" id="mTS_1_container">
-                            <li class="product-thumb trang mTSThumbContainer">
-                                <a href="javascript:void(0);" data-image="assets/images/bonglan1.jpg" class="zoomGalleryActive">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/bonglan1.jpg" class="mTSThumb">
-                                </a>
-                            </li>
-                            <li class="product-thumb trang mTSThumbContainer">
-                                <a href="javascript:void(0);" data-image="assets/images/bonglan2.jpg">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/bonglan2.jpg" class="mTSThumb">
-                                </a>
-                            </li>
-                            <li class="product-thumb trang mTSThumbContainer">
-                                <a href="javascript:void(0);" data-image="assets/images/pro_8.jpg">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_8.jpg" class="mTSThumb">
-                                </a>
-                            </li>
-                            <li class="product-thumb trang mTSThumbContainer">
-                                <a href="javascript:void(0);" data-image="assets/images/pro_10.jpg">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_10.jpg" class="mTSThumb">
-                                </a>
-                            </li>
-                            <li class="product-thumb trang mTSThumbContainer">
-                                <a href="javascript:void(0);" data-image="assets/images/pro_9.jpg">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_9.jpg" class="mTSThumb">
-                                </a>
-                            </li>
-                            <li class="product-thumb trang mTSThumbContainer">
-                                <a href="javascript:void(0);" data-image="assets/images/pro_7.jpg">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_7.jpg" class="mTSThumb">
-                                </a>
-                            </li>
-                            <li class="product-thumb trang mTSThumbContainer">
-                                <a href="javascript:void(0);" data-image="assets/images/pro_6.jpg">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_6.jpg" class="mTSThumb">
-                                </a>
-                            </li>
-                            <li class="product-thumb trang mTSThumbContainer">
-                                <a href="javascript:void(0);" data-image="assets/images/pro_5.jpg">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_5.jpg" class="mTSThumb">
-                                </a>
-                            </li>
-                            <li class="product-thumb trang mTSThumbContainer">
-                                <a href="javascript:void(0);" data-image="assets/images/pro_4.jpg">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_4.jpg" class="mTSThumb">
-                                </a>
-                            </li>
-                        </ul>
-                        </div>                          
-                    </div>
-                </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 pd5 box-image-featured">
-                    <img class="product-image-feature" src="{{ STATIC_URL }}assets/websites/images/bonglan1.jpg" data-zoom-image="assets/images/bonglan1.jpg"/>
+                    <img class="product-image-feature" src="{{ MEDIA_URL }}{{product.image}}"/>
                 </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 pd5 information-product">
             <div class="product-title">
-                <h1>Bánh Dâu Tây</h1>
+                <h1>{{product.name}}</h1>
             </div>
             <div class="clearfix product-sku-date">
-                <span class="pull-left product-sku" id="pro_sku">Mã: 836183-100-1</span>
+                <span class="pull-left product-sku">ID: {{product.id}}</span>
             </div>
             <div class="hook-reviews">
-                <span class="rating">
-                    <i class="fas fa-star star-full"></i>
-                    <i class="fas fa-star star-full"></i>
-                    <i class="fas fa-star star-full"></i>
-                    <i class="fas fa-star star-full"></i>
-                    <i class="fas fa-star"></i>
+                <span class="rating" id="init-rate" data-init-rate="{{product.avg_rate}}" data-product-id="{{product.id}}">
+                    <select id="rating_product">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </span>
             </div>  
-            <div class="category"><h4><span>Danh Mục:</span> Bánh Phông Lan</h4></div>
-            <div class="product-price" id="price-preview"><span>4,590,000₫</span></div>     
-            <form id="add-item-form" action="/cart/add" method="post" class="variants clearfix variant-style">  
+            <div class="category"><h4><span>Category:</span> {{product.name}}</h4></div>
+            <div class="product-price" id="price-preview"><span>{{product.unit_price|currency}}₫</span></div>     
+            <form id="add-item-form" action="{% url 'cart_add' %}" method="post" class="variants clearfix variant-style">  
+                {% csrf_token %}
                 <div class="select-wrapper clearfix ">
-                    <label>Số lượng</label>
+                    <label>Quantity</label>
                     <div class="input-group">
                         <input type="button" value="-" class="qty-btn minusQuantity">
                         <input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector">
                         <input type="button" value="+" class="qty-btn plusQuantity">
                     </div>
                 </div>
+                <input type="hidden" value="{{product.id}}" name="product_id">
+                <input type="hidden" value="{{request.path}}" name="path_url">
                 <div class="clearfix">
-                    <button class="btn-style-add add-to-cart">
+                    <button type="submit" class="btn-style-add add-to-cart" name="add_to_cart">
                         <span class="icon_cart_btn"></span>
-                        <span>Thêm vào giỏ</span>
+                        <span>Add To Cart</span>
                     </button>
-                    <button class="btn-style-buynow addnow">
+                    <button type="submit" class="btn-style-buynow addnow" name="buy_now">
                         <span class="icon_cart_btn"></span>
-                        <span>Mua ngay</span>
+                        <span>Buy now</span>
                     </button>
                 </div>
             </form>         
@@ -216,29 +168,19 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="active">
                         <a data-toggle="tab"  href="#description">
-                            <span>Mô tả sản phẩm</span>
+                            <span>Description</span>
                         </a>
                     </li>
                     <li class="">
                         <a href="#reviews" role="tab" data-toggle="tab">
-                            <span class="reviews text-capitalize">Đánh giá</span>
+                            <span class="reviews text-capitalize">Comment</span>
                         </a>
                     </li>
                 </ul>            
                 <div class="tab-content">
                     <div class="tab-pane active"  id="description">                                      
                         <div class="container-fluid product-description-wrapper">
-                            <p>Bánh kem sữa tươi, nhân thơm.... Size 25cm (2,5 tấc)</p>
-
-                            <p>Giá đã bao gồm phí giao trong nội thành các Thành phố. Về huyện, xã, vùng sâu... xin liên hệ báo phí vận chuyển.</p>
-
-                            <p>Bánh kem mà quý khách đã đặt sẽ được giao tới tận tay người nhận.</p>
-
-                            <p>Nội dung viết lên bánh kem (theo yêu cầu của người đặt) sẽ được viết bằng tay (thợ làm bánh) lên bánh.</p>
-
-                            <p>Ngoài ra, quý khách có thể yêu cầu nội dung ghi (in) lên thiệp (miễn phí) gửi kèm bánh.</p>
-
-                            <p>Đèn cầy (nến) số theo tuổi của người nhận sẽ gửi tặng miễn phí kèm theo bánh.</p>
+                            {{product.description}}
                             <br>
                         </div>
                     </div>
@@ -258,18 +200,18 @@
                                     </ul>
                                     <p class="review-rating">
                                         <span class="rating">
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star"></i>
                                         </span>
                                     </p>
                                     <p class="media-comment">
                                         Great snippet! Thanks for sharing.
                                     </p>
-                                    <button type="button" class="btn btn-info btn-circle text-uppercase reply-btn" data-toggle="modal" data-target="#Reply-customer" data-id-comment="1"><i class="fas fa-share"></i> Reply</button>
-                                    <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><i class="fas fa-comment"></i> 1 comment</a>
+                                    <button type="button" class="btn btn-info btn-circle text-uppercase reply-btn" data-toggle="modal" data-target="#Reply-customer" data-id-comment="1"><i class="fa fa-share"></i> Reply</button>
+                                    <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyOne"><i class="fa fa-comment"></i> 1 comment</a>
                               </div>              
                             </div>
                             <div class="collapse reply-every-comment" id="replyOne">
@@ -280,7 +222,7 @@
                                         </a>
                                         <div class="media-body">
                                           <div class="well well-lg">
-                                                <h5 class="media-heading text-uppercase reviews"><i class="fas fa-share"></i> Phản Hồi Của Người Bán</h5>
+                                                <h5 class="media-heading text-uppercase reviews"><i class="fa fa-share"></i> Phản Hồi Của Người Bán</h5>
                                                 <ul class="media-date text-uppercase reviews list-inline">
                                                     <li class="dd">22</li>
                                                     <li class="mm">09</li>
@@ -309,17 +251,17 @@
                                     </ul>
                                     <p class="review-rating">
                                         <span class="rating">
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star star-full"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star star-full"></i>
                                         </span>
                                     </p>
                                     <p class="media-comment">
                                         I'm looking for that. Thanks!
                                     </p>
-                                    <button type="button" class="btn btn-info btn-circle text-uppercase reply-btn" data-toggle="modal" data-target="#Reply-customer" data-id-comment="2"><i class="fas fa-share"></i> Reply</button>
+                                    <button type="button" class="btn btn-info btn-circle text-uppercase reply-btn" data-toggle="modal" data-target="#Reply-customer" data-id-comment="2"><i class="fa fa-share"></i> Reply</button>
                                 </div>              
                             </div>
                           </li>
@@ -337,18 +279,18 @@
                                     </ul>
                                     <p class="review-rating">
                                         <span class="rating">
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star star-full"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star star-full"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
                                         </span>
                                     </p>
                                     <p class="media-comment">
                                         Yehhhh... Thanks for sharing.
                                     </p>
-                                    <button type="button" class="btn btn-info btn-circle text-uppercase reply-btn" data-toggle="modal" data-target="#Reply-customer" data-id-comment="3"><i class="fas fa-share"></i> Reply</button>
-                                    <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyTwo"><i class="fas fa-comment"></i> 1 comment</a>
+                                    <button type="button" class="btn btn-info btn-circle text-uppercase reply-btn" data-toggle="modal" data-target="#Reply-customer" data-id-comment="3"><i class="fa fa-share"></i> Reply</button>
+                                    <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#replyTwo"><i class="fa fa-comment"></i> 1 comment</a>
                                 </div>              
                             </div>
                             <div class="collapse reply-every-comment" id="replyTwo">
@@ -359,7 +301,7 @@
                                         </a>
                                         <div class="media-body">
                                             <div class="well well-lg">
-                                                <h5 class="media-heading text-uppercase reviews"><i class="fas fa-share"></i> Phản Hồi Của Người Bán</h5>
+                                                <h5 class="media-heading text-uppercase reviews"><i class="fa fa-share"></i> Phản Hồi Của Người Bán</h5>
                                                 <ul class="media-date text-uppercase reviews list-inline">
                                                     <li class="dd">22</li>
                                                     <li class="mm">09</li>
@@ -407,79 +349,29 @@
             <div class="wrapper-product-related">
                 <div class="title-group-related">
                     <h3 class="title-group">
-                        Sản phẩm liên quan
+                        RELATED PRODUCTS
                     </h3>
                 </div>
                 <ul class="list-product-related">
-                    <li>
-                        <div class="flexbox-grid-default bd-bt--detail-pro">
-                            <div class="flexbox-auto-100px">
-                                <a href="detail.html">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_12.jpg">
-                                </a>
+                    {% for item in related_products %}
+                        <li>
+                            <div class="flexbox-grid-default bd-bt--detail-pro">
+                                <div class="flexbox-auto-100px">
+                                    <a href="{% url 'product_detail' item.id %}">
+                                        <img src="{{ MEDIA_URL }}{{item.image}}">
+                                    </a>
+                                </div>
+                                <div class="flexbox-content pd-l-10">
+                                    <a href="detail.html">
+                                        <h2>{{item.name}}</h2>
+                                        <p class="product-box-price-related clearfix flexbox-grid-default">
+                                            <span class="price-new-related flexbox-content text-left">{{item.unit_price|currency}}₫</span> 
+                                        </p>
+                                    </a>
+                                </div>
                             </div>
-                            <div class="flexbox-content pd-l-10">
-                                <a href="detail.html">
-                                    <h2>Nike Air Max 1 Ultra Essential</h2>
-                                    <p class="product-box-price-related clearfix flexbox-grid-default">
-                                        <span class="price-new-related flexbox-content text-left">3,390,000₫</span> 
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </li>   
-                    <li>
-                        <div class="flexbox-grid-default bd-bt--detail-pro">
-                            <div class="flexbox-auto-100px">
-                                <a href="detail.html">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_11.jpg">
-                                </a>
-                            </div>
-                            <div class="flexbox-content pd-l-10">
-                                <a href="detail.html">
-                                    <h2>Nike Train Speed 4</h2>
-                                    <p class="product-box-price-related clearfix flexbox-grid-default"> 
-                                        <span class="price-new-related flexbox-content text-left">3,090,000₫</span> 
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </li>   
-                    <li>
-                        <div class="flexbox-grid-default bd-bt--detail-pro">
-                            <div class="flexbox-auto-100px">
-                                <a href="detail.html">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_10.jpg">
-                                </a>
-                            </div>
-                            <div class="flexbox-content pd-l-10">
-                                <a href="detail.html">
-                                    <h2>Nike Free Train Versatility</h2>
-                                    <p class="product-box-price-related clearfix flexbox-grid-default">
-                                        <span class="price-new-related flexbox-content text-left">3,090,000₫</span>
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </li>   
-                    <li>
-                        <div class="flexbox-grid-default bd-bt--detail-pro">
-                            <div class="flexbox-auto-100px">
-                                <a href="detail.html">
-                                    <img src="{{ STATIC_URL }}assets/websites/images/pro_9.jpg">
-                                </a>
-                            </div>
-                            <div class="flexbox-content pd-l-10">
-                                <a href="detail.html">
-                                    <h2>Nike Air Zoom Pegasus 33</h2>
-                                    <p class="product-box-price-related clearfix flexbox-grid-default">
-                                        <span class="price-new-related flexbox-content text-left">2,878,000₫</span>
-                                        <span class="price-old-related flexbox-content">3,600,000₫</span> 
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </li>   
+                        </li>   
+                    {% endfor %}
                 </ul>
             </div>
         </div>

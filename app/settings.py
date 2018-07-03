@@ -131,6 +131,9 @@ SITE_ID = 1
 #Set key activation expires is 7 days
 KEY_ACTIVATION_EXPIRES = 7
 
+#Format 
+USE_THOUSAND_SEPARATOR = True
+
 
 ############################ Static Files' Settings ###########################
 

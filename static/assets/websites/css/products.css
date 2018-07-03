@@ -25,9 +25,15 @@
     outline: none !important;
     -webkit-appearance: none;
 }
-.list-product li {
-    list-style: none;
+#menusidebarleft{
+    margin-left: 15px;
 }
+#menusidebarleft li {
+    text-transform: uppercase;
+}
+/*.list-product li {
+    list-style: none;
+}*/
 
 /******************************** Layout Chung *****************************/
 
@@ -229,6 +235,8 @@
 #collection .sort-by {
     padding: 2px 10px;
     border: 1px solid #e7e7e7;
+    display: inline-block;
+    width: auto;
 }
 .btn-loading {
     color: #fff;
@@ -310,13 +318,13 @@
 /****************************** Media.css **********************************/
 
 /* *** CUSTOM ***" */
-.hook-reviews .rating .fas {
+.hook-reviews .rating .fa {
     display: inline-block;
 }
-.hook-reviews .rating .fas::before {
+.hook-reviews .rating .fa::before {
     color: #d5d5d5;
 }
-.hook-reviews .rating .fas.star-full::before {
+.hook-reviews .rating .fa.star-full::before {
     color: #ffae00;
 }
 .list-product .view-product.btn:hover, .view-product.btn:hover {
@@ -330,7 +338,7 @@
     display: inline-block;
     font-size: 10px;
     line-height: 1;
-    padding: 8px 20px;
+    padding: 10px 20px;
     margin-top: 0px;
     color: #999;
     border: 1px solid #909090;

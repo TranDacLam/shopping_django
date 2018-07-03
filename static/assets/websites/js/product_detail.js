@@ -1,32 +1,5 @@
 $(document).ready(function(){
 
-    // Zoom image
-    $(".product-image-feature").elevateZoom({scrollZoom : true});
-
-
-    if($(".product-thumb-vertical").length > 0 && $(window).width() >= 768 ) {
-        $(".product-thumb-vertical").mThumbnailScroller({
-            axis:"y",
-            type:"click-thumb",
-            theme:"buttons-out",
-            type:"hover-precise",
-            contentTouchScroll: true
-        });
-        setTimeout(function(){
-            $('.product-thumb-vertical').css('height',$('.product-image-feature').height());
-            $('#sliderproduct').show();
-        },500);
-    }
-    if($(".product-thumb-vertical").length > 0 && $(window).width() < 767 ) {
-        $(".product-thumb-vertical").mThumbnailScroller({
-            axis:"x",
-            theme:"buttons-out",
-            contentTouchScroll: true
-        });
-        $('#sliderproduct').show();
-    }
-
-
     // Quantity product
     $('.minusQuantity').on('click', function(){
         var quantity = parseInt($('#quantity').val());
@@ -40,25 +13,45 @@ $(document).ready(function(){
         $('#quantity').val(quantity + 1);
     });
 
-    // change image
-    $('.mTSThumbContainer').on('click', function(){
-        $(".mTSThumbContainer a").removeClass('zoomGalleryActive');
-        $(this).find('a').addClass('zoomGalleryActive');
-        var url_image = $(this).find('a').attr('data-image');
-        var zoomImage = $(".product-image-feature");
-        $('.zoomContainer').remove();
-        zoomImage.removeData('elevateZoom');
-        // Update source for images
-        zoomImage.attr('src', url_image);
-        zoomImage.data('zoom-image', url_image);
-        // Reinitialize EZ
-        zoomImage.elevateZoom({scrollZoom : true});
-    });
-
 
     // Comment
     $('.reply-btn').on('click', function(){
         var comment_id = $(this).attr('data-id-comment');
         $('#Reply-customer form .comment-parrent').val(comment_id);
+    });
+
+
+    var init_rate = parseInt($('#init-rate').attr('data-init-rate'));
+    var product_id = parseInt($('#init-rate').attr('data-product-id'));
+
+    $('#rating_product').barrating({
+        theme: 'fontawesome-stars',
+        initialRating: init_rate,
+        onSelect: function(value, text, event) {
+            if (typeof(event) !== 'undefined') {
+                var select_rate = parseInt(value);
+
+                $.ajax({
+                    url: '/vi/product/rating/',
+                    type: 'POST',
+                    data: {
+                        'product_id': product_id,
+                        'point': select_rate
+                    },
+                    context: this,
+                })
+                .done(function(response) {
+                    $('#rating_product').barrating('set', response.point);
+                    toastr.success(response.message);
+                })
+                .fail(function(error) {
+                    if(error.status == 500){
+                        toastr.error(error.statusText);
+                    }else{
+                        toastr.error(error.responseJSON.message);
+                    }
+                });
+            }
+        }
     });
 });
