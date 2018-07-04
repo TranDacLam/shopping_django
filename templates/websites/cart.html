@@ -63,9 +63,9 @@
                                     <strong>{{item.price|sub_total:item.quantity}}₫</strong>
                                 </td>
                                 <td class="col-sm-1 col-md-1">
-                                <button type="button" class="btn btn-danger">
+                                <a href="{% url 'remove_from_cart' %}?product_id={{item.id}}" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove"></span> Remove
-                                </button></td>
+                                </a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -93,6 +93,12 @@
                                 </a></td>
                             </tr>
                         </tfoot>
+                    {% else %}
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="text-center"> CART EMPTY </td>
+                            </tr>
+                        </tbody>
                     {% endif %}
                 </table>
             </div>

@@ -1,0 +1,50 @@
+.main-contact{
+    width: 100%;
+}
+.contact-title h1{
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+.contact-custom{
+    margin-bottom: 70px;
+}
+.contact-custom h3{
+    font-size: 16px;
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+    color: #636363;
+}
+.contact-custom .info-address{
+    margin-top: 30px;
+}
+.contact-custom p{
+    line-height: 22px;
+}
+.contact-custom p>span{
+    color: #f07469;
+}
+.form-contact{
+    border-left: 1px solid;
+}
+.contact-custom h3{
+        margin-top: 0px;
+    }
+
+@media only screen and (max-width : 1200px) {
+    .contact-custom h3{
+        margin-top: 10px;
+    }
+}
+@media only screen and (max-width : 767px) {
+    .form-contact{
+        margin-top: 30px;
+    }
+    .contact-custom h3{
+        margin-top: 36px;
+    }
+}
+@media only screen and (max-width : 480px) {
+    .form-contact, .info-contact-custom{
+        width: 100%;
+    }
+}

@@ -34,6 +34,7 @@ if settings.DEBUG:
 
 urlpatterns += i18n_patterns(
     url(r'^admin/', admin.site.urls),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'', include('core.urls')),
     url(r'', include('registration.urls')),
     url(r'404', views.custom_404, name="404"),

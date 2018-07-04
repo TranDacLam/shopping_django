@@ -1,0 +1,11 @@
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+ul li {
+    color: red;
+}
+.registration {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}

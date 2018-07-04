@@ -31,12 +31,14 @@ class Cart:
 
     def remove(self, id):
         index = self.find_index(id=id)
-        if self.items and index:
+        if self.items and index is not None:
+            product = self.items[index]
+            self.total_quantity -= product['quantity']
+            self.total_price -= product['quantity'] * product['price']
             self.items.pop(index)
 
 
     def find_index(self, id):
-        print 'id', id
         index = next((index for (index, item) in enumerate(self.items) if item['id'] == id), None)
         print 'index', index
         return index

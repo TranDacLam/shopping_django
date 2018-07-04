@@ -54,7 +54,7 @@ class Product(DateTimeModel):
         _('Product'), max_length=255, upload_to="product")
     avg_rate = models.IntegerField(_('Avg Rate'), editable=True, default=0)
     unit_price = models.IntegerField(_('Unit price'), blank=False)
-    promotion = models.FloatField(_('Promotion'), null=True, blank=True)
+    promotion = models.IntegerField(_('Promotion'), null=True, blank=True)
     inventory = models.IntegerField(_('Inventory'), null=True, blank=True)
     description = models.TextField(_("Description"))
     hot = models.BooleanField(default=False)
@@ -95,9 +95,12 @@ class Bill(DateTimeModel):
     )
 
     order_date = models.DateField(_("Order Date"), default=datetime.date.today, editable=True)
-    status = models.CharField(_("Status"), max_length=50, choices=TYPE_STATUS)
+    status = models.CharField(_("Status"), max_length=50, choices=TYPE_STATUS, default='pending')
     note = models.TextField(_("Note"), null=True, blank=True)
-    total = models.FloatField(_('Total'), null=True, blank=True, editable=True)
+    total = models.IntegerField(_('Total'), null=True, blank=True, editable=True)
+    full_name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=50)
+    address = models.CharField(max_length=255)
     user = models.ForeignKey('User', related_name='user_bill_rel',
                                  on_delete=models.CASCADE)
 
@@ -110,15 +113,15 @@ class Bill(DateTimeModel):
 
 
 class BillDetail(DateTimeModel):
-    quantity = models.FloatField(_('Total'), null=True, blank=True)
-    unit_price = models.FloatField(_('Unit price'), null=True, blank=True)
+    quantity = models.IntegerField(_('Total quantity'), null=True, blank=True)
+    unit_price = models.IntegerField(_('Unit price'), null=True, blank=True)
     product = models.ForeignKey('Product', related_name='product_bill_detail_rel',
                                  on_delete=models.CASCADE)
     bill = models.ForeignKey('Bill', related_name='bill_detail_rel',
                                  on_delete=models.CASCADE)
 
     def __str__(self):
-        return '%s' % (self.name)
+        return '%s' % (self.quantity)
 
     class Meta:
         verbose_name = _('Bill Detail')

@@ -7,8 +7,10 @@ from django.http import HttpResponse, JsonResponse, Http404
 from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Avg
+from django.contrib import messages
 import json
 from models import *
+from forms import *
 from datetime import *
 from cart import *
 
@@ -153,11 +155,50 @@ def add_to_cart(request):
 
         print request.session['CART']
 
-        if 'add_to_cart' in request.POST:
-            return redirect(reverse('home'))
-        elif 'buy_now' in request.POST:
+        messages.success(request, _(
+                    'Add to cart success.'))
 
+        if 'add_to_cart' in request.POST:
+            return redirect(path_url)
+
+        elif 'buy_now' in request.POST:
             return redirect(reverse('cart'))
+
+        # return redirect(reverse(path_url))
+            
+    except Product.DoesNotExist, e:
+        print "Error Cart : %s" % e
+        raise Http404()
+
+    except Exception, e:
+        print "Error Cart: ", e
+        raise Exception(
+            "ERROR : Internal Server Error .Please contact administrator.")
+
+def remove_from_cart(request):
+    try:
+        product_id = request.GET.get('product_id', None)
+
+        product = Product.objects.get(id=product_id)
+
+        if 'CART' in request.session:
+            cart = Cart(request.session['CART'])
+
+            cart.remove(id=product.id)
+
+            if len(cart.items) > 0:
+                request.session['CART'] = {
+                    'total_price': cart.total_price,
+                    'total_quantity': cart.total_quantity,
+                    'items': cart.items
+                }
+            else:
+                del request.session['CART']
+                messages.warning(request, _(
+                    'Cart empty.'))
+                return redirect(reverse('home'))
+
+        return redirect(reverse('cart'))
 
         # return redirect(reverse(path_url))
             
@@ -191,7 +232,33 @@ def about(request):
 
 def checkout(request):
     try:
-        return render(request, 'websites/about.html')
+        context = {}
+        form_checkout = CheckoutForm(request=request)
+        context['form'] = form_checkout
+
+        if request.method == 'POST':
+            form_checkout = CheckoutForm(request.POST, request=request)
+            if form_checkout.is_valid():
+                form_checkout.save()
+
+                del request.session['CART']
+
+                messages.success(request, _(
+                    'Checkout success.'))
+                return redirect(reverse('home'))
+
+            context['full_name'] = request.POST[
+                'full_name'] if 'full_name' in request.POST else None
+            context['phone'] = request.POST[
+                'phone'] if 'phone' in request.POST else None
+            context['address'] = request.POST[
+                'address'] if 'address' in request.POST else None
+            context['note'] = request.POST[
+                'note'] if 'note' in request.POST else None
+            context['form'] = form_checkout
+
+        return render(request, 'websites/checkout.html', context)
+
     except Exception, e:
         print "Error checkout: ", e
         raise Exception(

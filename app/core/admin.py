@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from models import *
 from django import forms
 import custom_models
@@ -37,6 +38,9 @@ admin.site.register(Category, CategoryAdmin)
 
 
 class ProductAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorUploadingWidget()},
+    }
     prepopulated_fields = {'slug': ('name',)}
     pass
 admin.site.register(Product, ProductAdmin)
@@ -52,11 +56,27 @@ class ContactAdmin(ReadOnlyAdmin):
 admin.site.register(Contact, ContactAdmin)
 
 
+class ChildInline(admin.TabularInline):
+    model = BillDetail
+
+    readonly_fields = ('quantity', 'unit_price', 'product', 'bill')
+
+    def get_extra(self, request, obj=None, **kwargs):
+        if obj:
+            extra = obj.bill_detail_rel.count() - obj.bill_detail_rel.count()
+        else:
+            extra = 5
+        return extra
+
+
 class BillDetailAdmin(admin.StackedInline):
     model = BillDetail 
 
 
 class BillAdmin(admin.ModelAdmin):
-    inlines = [BillDetailAdmin]
+    model = Bill
+    list_display = ('full_name', 'phone', 'total', 'status', 'order_date')
+    inlines = [ChildInline,]
     pass
+
 admin.site.register(Bill, BillAdmin)
